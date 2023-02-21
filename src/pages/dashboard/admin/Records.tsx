@@ -36,6 +36,7 @@ const Records = () => {
                 saveToken(security)
                 setVerifiedUser(userInfo.firstname)
                 setAccount(data)
+                setLoading(false)
                 console.log(data)
             }
             else if(status==500){
@@ -46,7 +47,7 @@ const Records = () => {
                 setVerified(true)
                 navigate('/auth/login')
             }
-            setLoading(false)
+            
         }
         fetchDataFunc()
 

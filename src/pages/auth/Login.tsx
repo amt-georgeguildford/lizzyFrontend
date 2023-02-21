@@ -86,9 +86,7 @@ const Login = () => {
                                 </div>
                                 <div className="input-wrapper input-flex">
                                     <input type={showPassword? "text":"password"} name="password" className="password" value={password} onChange={({target})=>setPassword(target.value)} placeholder='Password'/>
-                                    <button className="btn" onClick={(e)=>{e.preventDefault(); setShowPassword(!showPassword)}}>
-                                        <span className="icon">{showPassword? <ImEyeBlocked /> : <ImEye /> }</span>
-                                    </button>
+                                    <span className="icon" onClick={(e)=>{e.preventDefault(); setShowPassword(!showPassword)}}>{showPassword? <ImEyeBlocked /> : <ImEye /> }</span>
                                 </div>
                                 <button type="submit" className="btn green-btn submit-btn">{isLoading? <CircularProgress size='20px' color= 'inherit'/>:'Sign In'}</button>
                             </form>

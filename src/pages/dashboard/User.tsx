@@ -23,7 +23,7 @@ const User = () => {
   const [emptySearch, setEmptySearch]= useState(false)
   const [search, setSearch]= useState('')
   const [account, setAccount] = useState([] as AccountData[])
-  const {setAcct,setVerifiedUser} = useContext(context)
+  const {setVerifiedUser,setVerified} = useContext(context)
   const {id} = useParams()
   const navigate= useNavigate()
 
@@ -40,15 +40,17 @@ const User = () => {
           saveToken(security)
           setVerifiedUser(userInfo.firstname)
           setAccount(data)
+          setLoading(false)
       }
       else if(status==500){
           console.log('Something went wrong...')
       }
       else{
           removeSaveToken()
+          setVerified(true)
           navigate('/auth/login')
       }
-      setLoading(false)
+      
   }
   fetchDataFunc()
   },[])

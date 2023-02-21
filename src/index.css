@@ -186,16 +186,15 @@ td {
   position: relative;
   margin-bottom: 20px;
 }
-.auth form .input-wrapper button {
+.auth form .input-wrapper > .icon {
   position: absolute;
   right: 1rem;
   top: 50%;
-  transform: translateY(-50%);
-}
-.auth form .input-wrapper button .icon {
   color: rgb(73, 73, 73);
+  transform: translateY(-50%);
+  cursor: pointer;
 }
-.auth form .input-wrapper button .icon:hover {
+.auth form .input-wrapper > .icon:hover {
   color: rgb(46, 46, 46);
 }
 .auth form .input-wrapper input {
@@ -508,6 +507,16 @@ td {
   width: 100%;
   border: none;
   resize: none;
+  outline: none;
+}
+.admin .upload-content form .file-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.admin .upload-content form .file-flex select {
+  padding: 3px 4px;
+  width: 150px;
   outline: none;
 }
 .admin .upload-content form .submit-btn {

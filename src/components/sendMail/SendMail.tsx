@@ -11,7 +11,7 @@ const SendMail = () => {
     const navigate =useNavigate()
     const {id,file_id}= useParams()
 
-    const handleSubmit= ()=>{
+    const handleSubmit= (e:React.FormEvent<HTMLFormElement>)=>{
         const token = accessSavedToken()
         const sentEmailFunc= async()=>{
             const sentEmail= await fetch(`${config.userDataLink}/${id}/mails/${file_id}?accessToken=${token.accessToken}&refreshToken=${token.refreshToken}`,{
@@ -39,7 +39,7 @@ const SendMail = () => {
                 <div className="file-preview"></div>
             </div>
             <div className="mail-entry">
-                <form action="" onSubmit={(e)=>{e.preventDefault()}}>
+                <form action="" onSubmit={handleSubmit}>
                 <label htmlFor="email-collection">To:</label>
                 <div className="textarea">
                     <textarea name="" id="email-collection" cols={30} rows={5} onChange={({target})=>setEmails(target.value)} value={emails}></textarea>
@@ -50,8 +50,8 @@ const SendMail = () => {
                 </div>
 
                 <div className="button-group">
-                    <button className="btn close-btn" onClick={()=>{setMessage(''); setEmails(''); navigate(`/dashboard/users/${id}`)}}>Close</button>
-                    <button className="btn send-mail-btn" onClick={handleSubmit}>{ loading? <CircularProgress color='inherit' size='10px'/>:'Send'}</button>
+                    <span className="btn close-btn" onClick={()=>{setMessage(''); setEmails(''); navigate(`/dashboard/users/${id}`)}}>Close</span>
+                    <button className="btn send-mail-btn">{ loading? <CircularProgress color='inherit' size='10px'/>:'Send'}</button>
                 </div>
                 </form>
             </div>

@@ -25,7 +25,7 @@ const DownlistsList = () => {
             const status=downloadData.status;
             const response = await downloadData.json()
             console.log(response)
-            if(status==200){
+            if(status===200){
                 const {file,data}= response
                 setFile(file)
                 setDownloadList(data)

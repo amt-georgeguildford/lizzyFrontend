@@ -1,6 +1,6 @@
 import React from 'react'
 // http://localhost:5000/auth/login
-const env= 'prod'
+const env= 'dev'
 const originObj={
     dev:'http://localhost:5000',
     prod:'https://lizzybackend-production.up.railway.app'
