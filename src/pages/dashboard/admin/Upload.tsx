@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { FaCloudUploadAlt } from 'react-icons/fa'
 import { useNavigate, useParams } from 'react-router-dom'
 import config from '../../../config/config'
-import { context } from '../../../context/ContextProvider'
+import { accountType, context } from '../../../context/ContextProvider'
 import accessSavedToken from '../../../utlis/accessSavedToken'
 import removeSaveToken from '../../../utlis/removeSaveToken'
 import saveToken from '../../../utlis/saveToken'
@@ -17,7 +17,7 @@ const Upload = () => {
     const [user, setUser]= useState('')
     const [usersData,setUsersData]= useState<{id:string,firstname:string,lastname:string}[]>([])
 
-    const {setVerified,setVerifiedUser}= useContext(context)
+    const {setVerified,setVerifiedUser,setAcct}= useContext(context)
     const {id}= useParams()
     const navigate= useNavigate()
     const handleSubmit= (e:React.FormEvent<HTMLFormElement>)=>{
@@ -76,6 +76,7 @@ const Upload = () => {
             else{
                 removeSaveToken()
                 setVerified(true)
+                setAcct({} as accountType)
                 navigate('/auth/login')
             }
         }
@@ -101,7 +102,7 @@ const Upload = () => {
                     <div className="upload-content">
                         <form action="" encType="multipart/form" onSubmit={handleSubmit}>
                             <div className="file-select">
-                                <input type="file" name="file" id="file" onChange={({target})=>setFile(target.files![0])} accept='image/*, .pdf,.doc,.docx,.ppt,.pptx,.txt,.xls,.xlsx'/>
+                                <input type="file" name="file" id="file" onChange={({target})=>setFile(target.files![0])} accept='.svg, .png, .jpeg, .jpg, .webp, .pdf, .doc, .docx, .ppt, .pptx, .txt, .xls, .xlsx'/>
                                 <div className="file-upload-info">
                                     <span className='icon'><FaCloudUploadAlt /></span>
                                     <p>Select a file to upload</p>

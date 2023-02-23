@@ -58,7 +58,7 @@ return (
                 <div className="input-wrapper">
                     <input type="text" name="email" value={email} onChange={({target})=>setEmail(target.value)} placeholder='Email'/>
                 </div>
-                <button type="submit" className="btn green-btn submit-btn">{loading?<CircularProgress color='inherit' size='20px'/>:'Submit'}</button>
+                <button type="submit" className="btn green-btn submit-btn" disabled={loading}>{loading?<CircularProgress color='inherit' size='20px'/>:'Submit'}</button>
             </form>
             <div className="auth-footer">
                 <p className='reverse-page-question'>Don't have an account</p>

@@ -102,7 +102,7 @@ return (
                                     <div className="input-wrapper input-flex">
                                         <input type={showPassword? "text":"password"} name="confirm_password" value={confirmPassword} onChange={({target})=>setConfirmPasssword(target.value)} placeholder='Confirm Password'/>
                                     </div>
-                                    <button type="submit" className="btn green-btn submit-btn">{loading?<CircularProgress color='inherit' size= '20px'/>:'Reset Password'}</button>
+                                    <button type="submit" className="btn green-btn submit-btn" disabled={loading}>{loading?<CircularProgress color='inherit' size= '20px'/>:'Reset Password'}</button>
                                 </form>
                                 <div className="auth-footer">
                                     <div className="remember-flex">

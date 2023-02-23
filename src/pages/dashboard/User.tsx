@@ -4,7 +4,7 @@ import { IoIosSearch } from "react-icons/io";
 import { IoMdClose } from "react-icons/io";
 import { AiOutlineFile } from 'react-icons/ai'
 import { Link, Outlet, useNavigate, useParams } from "react-router-dom";
-import { context } from "../../context/ContextProvider";
+import { accountType, context } from "../../context/ContextProvider";
 import accessSavedToken from "../../utlis/accessSavedToken";
 import saveToken from "../../utlis/saveToken";
 import config from "../../config/config";
@@ -23,7 +23,7 @@ const User = () => {
   const [emptySearch, setEmptySearch]= useState(false)
   const [search, setSearch]= useState('')
   const [account, setAccount] = useState([] as AccountData[])
-  const {setVerifiedUser,setVerified} = useContext(context)
+  const {setVerifiedUser,setVerified,setAcct} = useContext(context)
   const {id} = useParams()
   const navigate= useNavigate()
 
@@ -48,6 +48,8 @@ const User = () => {
       else{
           removeSaveToken()
           setVerified(true)
+          setVerifiedUser('')
+          setAcct({} as accountType)
           navigate('/auth/login')
       }
       

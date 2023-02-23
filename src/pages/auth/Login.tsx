@@ -88,7 +88,7 @@ const Login = () => {
                                     <input type={showPassword? "text":"password"} name="password" className="password" value={password} onChange={({target})=>setPassword(target.value)} placeholder='Password'/>
                                     <span className="icon" onClick={(e)=>{e.preventDefault(); setShowPassword(!showPassword)}}>{showPassword? <ImEyeBlocked /> : <ImEye /> }</span>
                                 </div>
-                                <button type="submit" className="btn green-btn submit-btn">{isLoading? <CircularProgress size='20px' color= 'inherit'/>:'Sign In'}</button>
+                                <button type="submit" className="btn green-btn submit-btn" disabled={isLoading}>{isLoading? <CircularProgress size='20px' color= 'inherit'/>:'Sign In'}</button>
                             </form>
                             <div className="auth-footer">
                                 <div className="remember-flex">

@@ -1,5 +1,4 @@
 import React from 'react'
-// http://localhost:5000/auth/login
 const env= 'prod'
 const originObj={
     dev:'http://localhost:5000',
@@ -9,13 +8,14 @@ const origin=originObj[env]
 
 
 const config = {
+    origin,
     loginLink: `${origin}/auth/login`,
     register:   `${origin}/auth/register`,
     logout: `${origin}/auth/logout`,
 
     resetPasswordRequest: `${origin}/auth/reset_request`,
     verifyResetToken: `${origin}/auth/reset_password`,
-    verifyConfirmId: `${origin}/auth/reset_success`,
+    verifyConfirmId: `${origin}/auYth/reset_success`,
     authbeforedashboard: `${origin}/auth/verify_account_redirect`,
     
     verifyLink:   `${origin}/api/v1/verify`,
