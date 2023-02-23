@@ -543,6 +543,7 @@ td {
   outline: none;
 }
 .admin .upload-content form .submit-btn {
+  width: 64px;
   padding: 3px 8px;
 }
 

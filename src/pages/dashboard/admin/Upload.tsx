@@ -16,13 +16,15 @@ const Upload = () => {
     const [loading, setLoading]= useState(true)
     const [user, setUser]= useState('')
     const [usersData,setUsersData]= useState<{id:string,firstname:string,lastname:string}[]>([])
-
+    const [uploading, setUploading]= useState(false)
     const {setVerified,setVerifiedUser,setAcct}= useContext(context)
     const {id}= useParams()
     const navigate= useNavigate()
     const handleSubmit= (e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault()
+        setUploading(true)
         if(user.length==0){
+            setUploading(false)
             alert('Select a user before uploading file')
         }
         else{
@@ -40,6 +42,7 @@ const Upload = () => {
                 })
                 const response = await uploadFile.json()
                 const status= uploadFile.status
+                setUploading(false)
                 if(status==201){
                     alert('Upload Successful')
                 }
@@ -50,8 +53,10 @@ const Upload = () => {
                 setDescription('')
                 setFile(null)
                 setUser('')
+                
             }
             uploadFileFunc()
+            
         }
     }
 
@@ -122,7 +127,7 @@ const Upload = () => {
                                 </div>
                                 <div className="file-flex">
                                     <div>
-                                        <button className="btn green-btn submit-btn">Submit</button>
+                                        <button className="btn green-btn submit-btn">{uploading?<CircularProgress size='14px' color= 'inherit'/>:'Submit'}</button>
                                     </div>
                                     <div>
                                         <select name="" id="" onChange={({target})=>setUser(target.value)} value={user}>
