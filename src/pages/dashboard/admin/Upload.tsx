@@ -45,14 +45,15 @@ const Upload = () => {
                 setUploading(false)
                 if(status==201){
                     alert('Upload Successful')
+                    setTitle('')
+                    setDescription('')
+                    setFile(null)
+                    setUser('')
                 }
                 else{
                     alert(response.message)
                 }
-                setTitle('')
-                setDescription('')
-                setFile(null)
-                setUser('')
+                
                 
             }
             uploadFileFunc()
