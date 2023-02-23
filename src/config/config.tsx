@@ -1,5 +1,5 @@
 import React from 'react'
-const env= 'prod'
+const env= 'dev'
 const originObj={
     dev:'http://localhost:5000',
     prod:'https://lizzybackend-production.up.railway.app'
