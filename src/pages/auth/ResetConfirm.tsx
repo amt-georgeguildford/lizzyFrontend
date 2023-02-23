@@ -1,8 +1,9 @@
-import React, { useEffect, useState} from 'react'
+import React, { useContext, useEffect, useState} from 'react'
 import { BsCheck } from 'react-icons/bs';
 import { FaUserAlt } from 'react-icons/fa';
 import { Link, useParams } from 'react-router-dom';
 import config from '../../config/config';
+import { context } from '../../context/ContextProvider';
 
 const ResetConfirm = () => {
     const {id} = useParams()
@@ -10,6 +11,7 @@ const ResetConfirm = () => {
     const [userName,setUserName] = useState('')
     const [userEmail,setUserEmail] = useState('')
 
+    const {setVerified}= useContext(context)
     useEffect(()=>{
       const userFunc= async ()=>{
         const user= await fetch(`${config.verifyConfirmId}/${id}`);
@@ -18,6 +20,7 @@ const ResetConfirm = () => {
         console.log(response)
         setUserName(response.userInfo.firstname)
         setUserEmail(response.userInfo.email)
+        setVerified(true)
         setAccounVerified(true)
       }
 
