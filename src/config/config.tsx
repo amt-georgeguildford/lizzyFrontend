@@ -15,7 +15,7 @@ const config = {
 
     resetPasswordRequest: `${origin}/auth/reset_request`,
     verifyResetToken: `${origin}/auth/reset_password`,
-    verifyConfirmId: `${origin}/auYth/reset_success`,
+    verifyConfirmId: `${origin}/auth/reset_success`,
     authbeforedashboard: `${origin}/auth/verify_account_redirect`,
     
     verifyLink:   `${origin}/api/v1/verify`,
