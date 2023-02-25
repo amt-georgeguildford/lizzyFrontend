@@ -57,13 +57,20 @@ const User = () => {
   fetchDataFunc()
   },[])
 
-  const handleSearch =(e:React.ChangeEvent<HTMLInputElement>)=>{
+  const handleSearch =(e:React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLSpanElement, MouseEvent>)=>{
     const target= e.target
-    setSearch(target.value)
+    let searchStr=''
+    if('value' in target){
+      searchStr= target.value
+      setSearch(target.value)
+    }
+    else if(!('value' in target)){
+      setSearch('')
+    }
     setSearchLoading(true)
     const token= accessSavedToken()
     const searchFunc= async ()=>{
-      const searchData= await fetch(`${config.userDataLink}/${id}/search?accessToken=${token.accessToken}&refreshToken=${token.refreshToken}&search=${target.value.trim()}`)
+      const searchData= await fetch(`${config.userDataLink}/${id}/search?accessToken=${token.accessToken}&refreshToken=${token.refreshToken}&search=${searchStr.trim()}`)
       const status= searchData.status
       const response = await searchData.json()
       if(status==200){
@@ -86,7 +93,7 @@ const User = () => {
                emptySearch?<IoMdClose />:<IoIosSearch />}
             </span>
           {
-            search && <span className="icon close-time-icon" onClick={()=>setSearch('')}>
+            search && <span className="icon close-time-icon" onClick={handleSearch}>
             <IoMdClose />
           </span>
           }

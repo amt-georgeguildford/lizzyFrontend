@@ -1,5 +1,5 @@
 import { CircularProgress } from '@mui/material'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState, useRef } from 'react'
 import { FaCloudUploadAlt } from 'react-icons/fa'
 import { useNavigate, useParams } from 'react-router-dom'
 import config from '../../../config/config'
@@ -17,7 +17,11 @@ const Upload = () => {
     const [user, setUser]= useState('')
     const [usersData,setUsersData]= useState<{id:string,firstname:string,lastname:string}[]>([])
     const [uploading, setUploading]= useState(false)
+    
+    const emptyFile= useRef<HTMLInputElement>(null)
+
     const {setVerified,setVerifiedUser,setAcct}= useContext(context)
+    
     const {id}= useParams()
     const navigate= useNavigate()
     const handleSubmit= (e:React.FormEvent<HTMLFormElement>)=>{
@@ -49,6 +53,9 @@ const Upload = () => {
                     setDescription('')
                     setFile(null)
                     setUser('')
+                    if(emptyFile.current != null){
+                        emptyFile.current.value= ''
+                    }
                 }
                 else{
                     alert(response.message)
@@ -108,7 +115,7 @@ const Upload = () => {
                     <div className="upload-content">
                         <form action="" encType="multipart/form" onSubmit={handleSubmit}>
                             <div className="file-select">
-                                <input type="file" name="file" id="file" onChange={({target})=>setFile(target.files![0])} accept='.svg, .png, .jpeg, .jpg, .webp, .pdf, .doc, .docx, .ppt, .pptx, .txt, .xls, .xlsx'/>
+                                <input type="file" name="file" id="file" ref={emptyFile} onChange={({target})=>setFile(target.files![0])} accept='.svg, .png, .jpeg, .jpg, .webp, .pdf, .doc, .docx, .ppt, .pptx, .txt, .xls, .xlsx'/>
                                 <div className="file-upload-info">
                                     <span className='icon'><FaCloudUploadAlt /></span>
                                     <p>Select a file to upload</p>
