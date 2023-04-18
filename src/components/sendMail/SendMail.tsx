@@ -17,6 +17,7 @@ const SendMail = () => {
     const [file, setFile]= useState({} as {id:string, file:string, filename: string, fileType: 'image'|'document'})
     const handleSubmit= (e:React.FormEvent<HTMLFormElement>)=>{
         e.preventDefault();
+        setSending(true)
         const token = accessSavedToken()
         const sentEmailFunc= async()=>{
             const sentEmail= await fetch(`${config.userDataLink}/${id}/mails/${file_id}?accessToken=${token.accessToken}&refreshToken=${token.refreshToken}`,{
@@ -30,6 +31,7 @@ const SendMail = () => {
             const response= await sentEmail.json()
             console.log(response)
             if(status== 201){
+                setSending(false)
                 navigate(`/dashboard/users/${id}`)
             }
             
